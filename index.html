@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repo Favicons</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #090b0d;
+      --bg-2: #111418;
+      --bg-3: #171b20;
+      --panel: rgba(19, 23, 28, 0.86);
+      --text: #ecf1f4;
+      --text-2: #97a4af;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-2: rgba(255, 255, 255, 0.15);
+      --teal: #27c2a6;
+      --teal-dim: rgba(39, 194, 166, 0.12);
+      --amber: #f0a33a;
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      --radius: 16px;
+      --radius-lg: 24px;
+      --font: "Manrope", system-ui, sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, monospace;
+    }
+
+    html { color-scheme: dark; }
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(39, 194, 166, 0.12), transparent 30%),
+        radial-gradient(circle at bottom right, rgba(240, 163, 58, 0.08), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.5;
+      padding: 32px 20px 80px;
+    }
+
+    a { color: inherit; }
+
+    .shell {
+      width: min(1240px, 100%);
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.6rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin-bottom: 14px;
+    }
+
+    .intro {
+      max-width: 64ch;
+      color: var(--text-2);
+      font-size: 1rem;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 12px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      background: var(--panel);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      margin-bottom: 22px;
+      position: sticky;
+      top: 16px;
+      z-index: 10;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 16px;
+      height: 16px;
+      color: var(--text-2);
+      pointer-events: none;
+    }
+
+    .search {
+      width: 100%;
+      padding: 14px 16px 14px 42px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      font: inherit;
+      transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    }
+
+    .search::placeholder { color: var(--text-2); }
+    .search:focus {
+      outline: none;
+      border-color: rgba(39, 194, 166, 0.34);
+      box-shadow: 0 0 0 3px rgba(39, 194, 166, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .count-chip,
+    .toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 16px;
+      min-height: 50px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      font-family: var(--mono);
+      font-size: 0.82rem;
+      letter-spacing: 0.03em;
+    }
+
+    .toggle {
+      cursor: pointer;
+      transition: transform 140ms ease, border-color 140ms ease, background 140ms ease, color 140ms ease;
+    }
+
+    .toggle:hover {
+      transform: translateY(-1px);
+      border-color: rgba(240, 163, 58, 0.3);
+      background: rgba(240, 163, 58, 0.08);
+      color: #fff6ea;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent),
+        var(--panel);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(39, 194, 166, 0.24);
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(39, 194, 166, 0.1);
+    }
+
+    .preview {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 14px;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .icon-stage {
+      min-height: 132px;
+      display: grid;
+      place-items: center;
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(39, 194, 166, 0.07), rgba(240, 163, 58, 0.03)),
+        var(--bg-2);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .icon-stage img {
+      width: 84px;
+      height: 84px;
+      object-fit: contain;
+      filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.24));
+    }
+
+    .size-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      font-family: var(--mono);
+      color: var(--text-2);
+      font-size: 0.65rem;
+    }
+
+    .size-dot {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: var(--bg-3);
+      border: 1px solid var(--line);
+    }
+
+    .size-dot img { object-fit: contain; }
+    .size-dot.lg img { width: 28px; height: 28px; }
+    .size-dot.md img { width: 18px; height: 18px; }
+    .size-dot.sm img { width: 10px; height: 10px; }
+
+    .meta {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .name {
+      font-size: 0.96rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      word-break: break-word;
+    }
+
+    .path {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--text-2);
+      word-break: break-all;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .btn,
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 140ms ease, border-color 140ms ease, background 140ms ease;
+    }
+
+    .btn:hover,
+    .copy-btn:hover {
+      transform: translateY(-1px);
+      border-color: var(--line-2);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .copy-btn.is-copied {
+      border-color: rgba(39, 194, 166, 0.34);
+      background: var(--teal-dim);
+      color: #dffcf5;
+    }
+
+    .empty {
+      display: none;
+      padding: 48px 20px;
+      border: 1px dashed var(--line-2);
+      border-radius: var(--radius-lg);
+      background: rgba(255, 255, 255, 0.02);
+      text-align: center;
+      color: var(--text-2);
+    }
+
+    .empty strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    @media (max-width: 820px) {
+      .topbar {
+        flex-direction: column;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body { padding: 20px 14px 56px; }
+      .grid { grid-template-columns: 1fr; }
+      .actions { grid-template-columns: 1fr; }
+      .preview { grid-template-columns: 1fr; }
+      .size-rail {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Digital Footprints LLC</div>
+        <h1>Repo Favicons</h1>
+        <p class="intro">A compact gallery of project icon marks with real-size previews, direct file access, and quick path copying for reuse across active repos.</p>
+      </div>
+    </header>
+
+    <section class="toolbar" aria-label="Gallery controls">
+      <label class="search-wrap">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M21 21l-4.35-4.35m1.6-5.15a6.75 6.75 0 11-13.5 0 6.75 6.75 0 0113.5 0z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+        <input id="search" class="search" type="search" placeholder="Filter by repo name or filename" />
+      </label>
+      <div id="countChip" class="count-chip">21 visible</div>
+      <button id="sortToggle" class="toggle" type="button" aria-pressed="false">Sort: A → Z</button>
+    </section>
+
+    <section>
+      <div id="grid" class="grid"></div>
+      <div id="empty" class="empty">
+        <strong>No matching favicons</strong>
+        Try a different repo name or clear the current filter.
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const faviconItems = [
+      { file: "gemini-api-cost-calculator.svg", name: "gemini-api-cost-calculator" },
+      { file: "garden-os.svg", name: "garden-os" },
+      { file: "freelance.svg", name: "freelance" },
+      { file: "trailkeeper.svg", name: "trailkeeper" },
+      { file: "sdlc-tool-stack-map.svg", name: "sdlc-tool-stack-map" },
+      { file: "contractor.svg", name: "contractor" },
+      { file: "NotionWidgets.svg", name: "NotionWidgets" },
+      { file: "catering.svg", name: "catering" },
+      { file: "DaveHomeAssist.svg", name: "DaveHomeAssist.github.io" },
+      { file: "shieldbox-security.svg", name: "shieldbox-security" },
+      { file: "graph-explorer.svg", name: "graph-explorer" },
+      { file: "prompt-lab.svg", name: "prompt-lab" },
+      { file: "freelance-landing.svg", name: "freelance-landing" },
+      { file: "Utility.svg", name: "Utility" },
+      { file: "web-templates.svg", name: "web-templates" },
+      { file: "metagrid.svg", name: "metagrid" },
+      { file: "elysium-landing.svg", name: "elysium-landing" },
+      { file: "garden-cage-build-guide.svg", name: "garden-cage-build-guide" },
+      { file: "garden-planner.svg", name: "garden-planner" },
+      { file: "DaveLLM.svg", name: "DaveLLM" },
+      { file: "curl-plan.svg", name: "curl-plan" }
+    ];
+
+    const grid = document.getElementById("grid");
+    const search = document.getElementById("search");
+    const empty = document.getElementById("empty");
+    const countChip = document.getElementById("countChip");
+    const sortToggle = document.getElementById("sortToggle");
+
+    let ascending = true;
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function filteredItems() {
+      const query = search.value.trim().toLowerCase();
+      return faviconItems
+        .filter(item => `${item.name} ${item.file}`.toLowerCase().includes(query))
+        .slice()
+        .sort((a, b) => ascending
+          ? a.name.localeCompare(b.name, undefined, { sensitivity: "base" })
+          : b.name.localeCompare(a.name, undefined, { sensitivity: "base" }));
+    }
+
+    function render() {
+      const items = filteredItems();
+      countChip.textContent = `${items.length} visible`;
+      empty.style.display = items.length ? "none" : "block";
+      grid.innerHTML = items.map(item => {
+        const path = item.file;
+        const safeName = escapeHtml(item.name);
+        const safePath = escapeHtml(path);
+        const safeAlt = escapeHtml(`${item.name} favicon preview`);
+        return `
+          <article class="card">
+            <a class="preview" href="${safePath}" target="_blank" rel="noreferrer">
+              <div class="icon-stage">
+                <img src="${safePath}" alt="${safeAlt}" loading="lazy" decoding="async" />
+              </div>
+              <div class="size-rail" aria-hidden="true">
+                <div class="size-dot lg"><img src="${safePath}" alt="" loading="lazy" decoding="async" /></div>
+                <div class="size-dot md"><img src="${safePath}" alt="" loading="lazy" decoding="async" /></div>
+                <div class="size-dot sm"><img src="${safePath}" alt="" loading="lazy" decoding="async" /></div>
+              </div>
+            </a>
+            <div class="meta">
+              <div class="name">${safeName}</div>
+              <div class="path">${safePath}</div>
+            </div>
+            <div class="actions">
+              <a class="btn" href="${safePath}" target="_blank" rel="noreferrer">Open</a>
+              <a class="btn" href="${safePath}" download="${escapeHtml(item.file)}">Download</a>
+              <button class="copy-btn" type="button" data-copy="${safePath}">Copy Path</button>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    async function copyPath(button) {
+      const path = button.dataset.copy;
+      if (!path) return;
+      try {
+        await navigator.clipboard.writeText(path);
+        const prior = button.textContent;
+        button.textContent = "Copied";
+        button.classList.add("is-copied");
+        window.setTimeout(() => {
+          button.textContent = prior;
+          button.classList.remove("is-copied");
+        }, 900);
+      } catch {
+        button.textContent = "Unavailable";
+        window.setTimeout(() => {
+          button.textContent = "Copy Path";
+        }, 900);
+      }
+    }
+
+    search.addEventListener("input", render);
+
+    sortToggle.addEventListener("click", () => {
+      ascending = !ascending;
+      sortToggle.textContent = ascending ? "Sort: A → Z" : "Sort: Z → A";
+      sortToggle.setAttribute("aria-pressed", String(!ascending));
+      render();
+    });
+
+    document.addEventListener("click", event => {
+      const button = event.target.closest(".copy-btn");
+      if (button) copyPath(button);
+    });
+
+    render();
+  </script>
+</body>
+</html>
